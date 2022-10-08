@@ -26,11 +26,15 @@ const AppProvider = ({ children }) => {
     setLoading(false);
   };
 
+  const fetchRandomWaifu = () => {
+    fetchWaifus(`${randomWaifuUrl}${search}`);
+  };
+
   useEffect(() => {
     fetchWaifus(`${allWaifusUrl}${search}`);
   }, [search]);
 
-  return <AppContext.Provider value={{ loading, waifus, setSearch }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ loading, waifus, setSearch, fetchRandomWaifu }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {
