@@ -27,7 +27,7 @@ const Waifus = () => {
   }
 
   return (
-    <section className=" pt-12 pl-12 mt-auto grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 bg-slate-100">
+    <section className=" pt-12 pl-12 mt-auto grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 bg-slate-100 2xl:pl-48 2xl:pr-48">
       {waifus.map((singleWaifu) => {
         const { idMeal, strMeal: title, strMealThumb: image } = singleWaifu;
         console.log(singleWaifu);
@@ -35,9 +35,9 @@ const Waifus = () => {
           <article key={idMeal} className="pb-5 m-3 bg-white max-w-xl rounded-lg bg-cover shadow-lg hover:bg-slate-50">
             <div className="mx-auto">
               <img alt="" src={image} className=" rounded-lg px-3 shadow-md hover:scale-110 transition-all duration-500" />
-              <h5 className="pt-4 pl-10 text-2xl font-semibold">{title}</h5>
+              <h5 className="pt-4 pr-10 pl-10 text-2xl font-semibold">{title}</h5>
               <div className="text-right pr-5">
-                <button className="text-justify px-4 rounded-full text-2xl hover:scale-125">
+                <button className="text-justify pt-3 px-4 rounded-full text-2xl hover:scale-125">
                   <BsHandThumbsUp />
                 </button>
               </div>
