@@ -27,7 +27,7 @@ const Waifus = () => {
   }
 
   return (
-    <section className=" pt-12 pl-12 mt-auto grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 bg-slate-100">
+    <section className=" pt-12 pl-12 mt-auto grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 bg-slate-100 2xl:pl-48 2xl:pr-48">
       {waifus.map((singleWaifu) => {
         const { idMeal, strMeal: title, strMealThumb: image } = singleWaifu;
         console.log(singleWaifu);
