@@ -3,6 +3,7 @@ import { useGlobalContext } from '../Context';
 
 const Search = () => {
   const [text, setText] = useState([]);
+  const { setSearch } = useGlobalContext();
 
   const handleChange = (e) => {
     setText(e.target.value);
@@ -10,6 +11,10 @@ const Search = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (text) {
+      setSearch(text);
+      setText(text);
+    }
   };
   return (
     <div className="bg-slate-300 pt-4 px-4 text-center 2xl:text-xl">

@@ -37,7 +37,7 @@ const Waifus = () => {
               <img alt="" src={image} className=" rounded-lg px-3 shadow-md hover:scale-110 transition-all duration-500" />
               <h5 className="pt-4 pl-10 text-2xl font-semibold">{title}</h5>
               <div className="text-right pr-5">
-                <button className="text-justify px-4 rounded-full text-2xl hover:scale-125">
+                <button className="text-justify pt-3 px-4 rounded-full text-2xl hover:scale-125">
                   <BsHandThumbsUp />
                 </button>
               </div>

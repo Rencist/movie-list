@@ -3,12 +3,13 @@ import axios from 'axios';
 
 const AppContext = React.createContext();
 
-const allWaifusUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=a';
+const allWaifusUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const randomWaifuUrl = 'https://www.themealdb.com/api/json/v1/1/random.php/';
 
 const AppProvider = ({ children }) => {
   const [waifus, setWaifus] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [search, setSearch] = useState('');
 
   const fetchWaifus = async (url) => {
     setLoading(true);
@@ -26,10 +27,10 @@ const AppProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchWaifus(allWaifusUrl);
-  }, []);
+    fetchWaifus(`${allWaifusUrl}${search}`);
+  }, [search]);
 
-  return <AppContext.Provider value={{ loading, waifus }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ loading, waifus, setSearch }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {
