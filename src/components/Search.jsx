@@ -17,7 +17,7 @@ const Search = () => {
     }
   };
   return (
-    <div className="bg-slate-300 pt-4 px-4 text-center 2xl:text-xl">
+    <div className="bg-slate-300 pb-5 pt-10 px-4 text-left pl-52 2xl:text-xl">
       <form onSubmit={handleSubmit}>
         <input
           value={text}

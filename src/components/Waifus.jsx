@@ -3,7 +3,7 @@ import { useGlobalContext } from '../Context';
 import { BsHandThumbsUp } from 'react-icons/bs';
 
 const Waifus = () => {
-  const { waifus, loading, selectWaifu } = useGlobalContext();
+  const { waifus, loading, selectWaifu, addToFavorites } = useGlobalContext();
 
   if (loading) {
     return (
@@ -21,7 +21,7 @@ const Waifus = () => {
   if (waifus.length < 1) {
     return (
       <div className="absolute bg-white bg-opacity-60 z-10 h-full w-full flex items-center justify-center">
-        <h1 className="text-4xl mr-4">No waifu matched in your search term. Please try again.</h1>
+        <h1 className="text-4xl mr-4 text-center">No waifu matched in your search term. Please try again.</h1>
       </div>
     );
   }
@@ -31,12 +31,17 @@ const Waifus = () => {
       {waifus.map((singleWaifu) => {
         const { idMeal, strMeal: title, strMealThumb: image } = singleWaifu;
         return (
-          <article key={idMeal} className="pb-5 mb-5 m-3 bg-white max-w-xl rounded-lg bg-cover shadow-lg hover:bg-slate-50 hover:shadow-2xl">
+          <article key={idMeal} className=" pb-5 mb-5 m-3 bg-white max-w-xl rounded-lg bg-cover shadow-lg hover:bg-slate-50 hover:shadow-2xl">
             <div className="mx-auto ">
               <img alt="" onClick={() => selectWaifu(idMeal)} src={image} className=" rounded-lg px-3 shadow-md cursor-pointer" />
               <h5 className="pt-4 pr-10 pl-10 text-2xl font-semibold">{title}</h5>
               <div className="text-right pr-5">
-                <button className="text-justify pt-3 px-4 rounded-full text-2xl hover:scale-125">
+                <button
+                  onClick={() => {
+                    addToFavorites(idMeal);
+                  }}
+                  className="text-justify pt-3 px-4 rounded-full text-2xl hover:scale-125"
+                >
                   <BsHandThumbsUp />
                 </button>
               </div>
