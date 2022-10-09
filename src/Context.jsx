@@ -34,9 +34,12 @@ const AppProvider = ({ children }) => {
   };
 
   const selectWaifu = (idMeal, favoriteWaifu) => {
-    console.log(idMeal);
     let waifu;
-    waifu = waifus.find((waifu) => waifu.idMeal === idMeal);
+    if (favoriteWaifu) {
+      waifu = favorites.find((waifu) => waifu.idMeal === idMeal);
+    } else {
+      waifu = waifus.find((waifu) => waifu.idMeal === idMeal);
+    }
     setSelectedWaifu(waifu);
     setShowModal(true);
   };
