@@ -10,6 +10,8 @@ const AppProvider = ({ children }) => {
   const [waifus, setWaifus] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [selectedWaifu, setSelectedWaifu] = useState(null);
 
   const fetchWaifus = async (url) => {
     setLoading(true);
@@ -30,11 +32,23 @@ const AppProvider = ({ children }) => {
     fetchWaifus(`${randomWaifuUrl}${search}`);
   };
 
+  const selectWaifu = (idMeal, favoriteWaifu) => {
+    console.log(idMeal);
+    let waifu;
+    waifu = waifus.find((waifu) => waifu.idMeal === idMeal);
+    setSelectedWaifu(waifu);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   useEffect(() => {
     fetchWaifus(`${allWaifusUrl}${search}`);
   }, [search]);
 
-  return <AppContext.Provider value={{ loading, waifus, setSearch, fetchRandomWaifu }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ loading, waifus, setSearch, fetchRandomWaifu, showModal, closeModal, selectedWaifu, selectWaifu }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {
