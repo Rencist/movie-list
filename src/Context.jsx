@@ -12,6 +12,7 @@ const AppProvider = ({ children }) => {
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [selectedWaifu, setSelectedWaifu] = useState(null);
+  const [favorites, setFavorites] = useState([]);
 
   const fetchWaifus = async (url) => {
     setLoading(true);
@@ -44,11 +45,24 @@ const AppProvider = ({ children }) => {
     setShowModal(false);
   };
 
+  const addToFavorites = (idMeal) => {
+    const waifu = waifus.find((waifu) => waifu.idMeal === idMeal);
+    const alreadyFavorite = favorites.find((waifu) => waifu.idMeal === idMeal);
+    if (alreadyFavorite) return;
+    const updatedFavorites = [...favorites, waifu];
+    setFavorites(updatedFavorites);
+  };
+
+  const removeFromFavorites = (idMeal) => {
+    const updatedFavorites = favorites.filter((waifu) => waifu.idMeal !== idMeal);
+    setFavorites(updatedFavorites);
+  };
+
   useEffect(() => {
     fetchWaifus(`${allWaifusUrl}${search}`);
   }, [search]);
 
-  return <AppContext.Provider value={{ loading, waifus, setSearch, fetchRandomWaifu, showModal, closeModal, selectedWaifu, selectWaifu }}>{children}</AppContext.Provider>;
+  return <AppContext.Provider value={{ loading, waifus, setSearch, fetchRandomWaifu, showModal, closeModal, selectedWaifu, selectWaifu, addToFavorites, removeFromFavorites, favorites }}>{children}</AppContext.Provider>;
 };
 
 export const useGlobalContext = () => {
