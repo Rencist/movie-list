@@ -32,8 +32,8 @@ const Waifus = () => {
         const { idMeal, strMeal: title, strMealThumb: image } = singleWaifu;
         return (
           <article key={idMeal} className="pb-5 mb-5 m-3 bg-white max-w-xl rounded-lg bg-cover shadow-lg hover:bg-slate-50 hover:shadow-2xl">
-            <div className="mx-auto">
-              <img alt="" onClick={() => selectWaifu(idMeal)} src={image} className=" rounded-lg px-3 shadow-md transition-all duration-500" />
+            <div className="mx-auto ">
+              <img alt="" onClick={() => selectWaifu(idMeal)} src={image} className=" rounded-lg px-3 shadow-md cursor-pointer" />
               <h5 className="pt-4 pr-10 pl-10 text-2xl font-semibold">{title}</h5>
               <div className="text-right pr-5">
                 <button className="text-justify pt-3 px-4 rounded-full text-2xl hover:scale-125">
