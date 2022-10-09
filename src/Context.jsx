@@ -6,13 +6,23 @@ const AppContext = React.createContext();
 const allWaifusUrl = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
 const randomWaifuUrl = 'https://www.themealdb.com/api/json/v1/1/random.php/';
 
+const getFavoritesFromLocalStorage = () => {
+  let favorites = localStorage.getItem('favorites');
+  if (favorites) {
+    favorites = JSON.parse(localStorage.getItem('favorites'));
+  } else {
+    favorites = [];
+  }
+  return favorites;
+};
+
 const AppProvider = ({ children }) => {
   const [waifus, setWaifus] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [selectedWaifu, setSelectedWaifu] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(getFavoritesFromLocalStorage());
 
   const fetchWaifus = async (url) => {
     setLoading(true);
@@ -54,11 +64,13 @@ const AppProvider = ({ children }) => {
     if (alreadyFavorite) return;
     const updatedFavorites = [...favorites, waifu];
     setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   const removeFromFavorites = (idMeal) => {
     const updatedFavorites = favorites.filter((waifu) => waifu.idMeal !== idMeal);
     setFavorites(updatedFavorites);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
   };
 
   useEffect(() => {
