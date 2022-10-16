@@ -14,7 +14,7 @@ const Favorites = () => {
             <div key={idMeal} className="pl-5 pr-5">
               <img src={image} onClick={() => selectWaifu(idMeal, true)} alt="image" className="p-1 mb-3 w-20 rounded-full bg-white shadow-lg cursor-pointer hover:scale-125 transition-all duration-500" />
               <button
-                className="text-red-600 text-sm ml-2  px-2 bg-white rounded-full text-center"
+                className="text-white text-sm ml-2  px-2 bg-rose-500 rounded-full text-center"
                 onClick={() => {
                   removeFromFavorites(idMeal);
                 }}
